@@ -1,5 +1,4 @@
-## EX. NO: 1(A) : IMPLEMENTATION OF CAESAR CIPHER
- 
+## EX. NO: 1 : IMPLEMENTATION OF CAESAR CIPHER
 
 ## AIM:
 
@@ -13,10 +12,7 @@ becomes C. To change a message back, each letter is replaced by the one three be
 
 ## EXAMPLE:
 
-
-
 ![image](https://github.com/Hemamanigandan/CNS/assets/149653568/eb9c6c43-8c80-4cdd-b9d4-91705a311c79)
-
 
 ## ALGORITHM:
 
@@ -27,55 +23,30 @@ becomes C. To change a message back, each letter is replaced by the one three be
 ### STEP-5: Display the cipher text obtained above.
 
 
-## PROGRAM :-
+PROGRAM :-
 ~~~
 #include <stdio.h>
 #include <string.h>
-#include <conio.h>
-#include <ctype.h>
-void main()
-
+void caesarCipher(char *text, int shift) 
 {
-    char plain[10],cipher[10];
-    int key,i,length;
-    int result;
-    printf("\n Enter the plain text:");
-    scanf("%s", plain);
-    printf("\n Enter the key value:");
-    scanf("%d", &key);
-    printf("\n \n \t PLAIN TEXt: %s", plain);
-    printf("\n \n \t ENCRYPTED TEXT:");
-    for(i=0, length = strlen(plain); i<length; i++)
+    for (int i = 0; text[i]; i++) 
     {
+        if (text[i] >= 'A' && text[i] <= 'Z')
+        text[i] = ((text[i]- 'A' + shift) % 26) + 'A';
         
-        cipher[i]=plain[i] + key;
-        if (isupper(plain[i]) && (cipher[i] > 'Z'))
-        cipher[i] = cipher[i] - 26;
-        if (islower(plain[i]) && (cipher[i] > 'z'))
-        cipher[i] = cipher[i] - 26;
-        printf("%c", cipher[i]);
-
     }
-    printf("\n \n \t AFTER DECRYPTION : ");
-    for(i=0;i<length;i++)
-    {
-        
-        plain[i]=cipher[i]-key;
-        if(isupper(cipher[i])&&(plain[i]<'A'))
-        plain[i]=plain[i]+26;
-        if(islower(cipher[i])&&(plain[i]<'a'))
-        plain[i]=plain[i]+26;
-        printf("%c",plain[i]);
-    }
-    getch();
-
+ }
+int main() 
+{
+    char text[] = "DAISY";
+    caesarCipher(text, 3);
+    printf("Encrypted Message: %s\n", text);
+    caesarCipher(text,-3);
+    printf("Decrypted Message: %s\n", text);
+    return 0;
     
 }
 ~~~
+OUTPUT :-
+![cry ex 1](https://github.com/user-attachments/assets/b9ccb761-b4ac-4a94-b036-49726df1bf16)
 
-
-## OUTPUT :-
-Simulating Caesar Cipher
-![Screenshot 2025-03-18 141514](https://github.com/user-attachments/assets/6b89440c-7282-430a-b416-5c05f63d0c1b)
-## RESULT:
-The program is executed successfully
